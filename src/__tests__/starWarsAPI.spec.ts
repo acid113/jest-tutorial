@@ -1,4 +1,4 @@
-import { fetchPeople, fetchPerson } from "../api/StarWars";
+import { fetchPeople, fetchPerson } from "../api/starWarsAPI";
 const axios = require("axios"); // * 'import axios' didn't work
 
 const person1 = {
