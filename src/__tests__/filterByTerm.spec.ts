@@ -3,22 +3,22 @@ import filterByTerm from "../shared/filterByTerm";
 describe("Filter function", () => {
 	test("it should filter by a search term (link)", () => {
 		const input = [
-			{ id: 1, url: "https://www.url1.dev" },
-			{ id: 2, url: "https://www.url2.dev" },
-			{ id: 3, url: "https://www.link3.dev" },
+			{ id: 1, url: "https://swapi.dev/api/starship" },
+			{ id: 2, url: "https://swapi.dev/api/people" },
+			{ id: 3, url: "https://swapi.dev/api/planets" },
 		];
 
-		const output = [{ id: 3, url: "https://www.link3.dev" }];
+		const output = [{ id: 3, url: "https://swapi.dev/api/planets" }];
 
-		expect(filterByTerm(input, "link")).toEqual(output);
-		expect(filterByTerm(input, "LINK")).toEqual(output);
+		expect(filterByTerm(input, "planet")).toEqual(output);
+		expect(filterByTerm(input, "PLANET")).toEqual(output);
 	});
 
 	test("it should throw error when input or search term are empty", () => {
 		const input = [
-			{ id: 1, url: "https://www.url1.dev" },
-			{ id: 2, url: "https://www.url2.dev" },
-			{ id: 3, url: "https://www.link3.dev" },
+			{ id: 1, url: "https://swapi.dev/api/starship" },
+			{ id: 2, url: "https://swapi.dev/api/people" },
+			{ id: 3, url: "https://swapi.dev/api/planets" },
 		];
 
 		const emptyInput: any = [];
