@@ -1,5 +1,5 @@
-import { fetchPeople, fetchPerson } from "../api/starWarsAPI";
-const axios = require("axios"); // * 'import axios' didn't work
+import {fetchPeople, fetchPerson} from "../api/starWarsAPI"
+import axios from "axios";
 
 const person1 = {
 	name: "Luke Skywalker Mock",
@@ -15,15 +15,13 @@ const people = [person1, person2];
 
 // * mocking modules
 jest.mock("axios");
+const mockedAxios = axios as jest.Mocked<typeof axios>
 
 describe("Star Wars API", () => {
 	test("should get a person", async () => {
-		// ? doesn't work with 'import'
-		axios.request.mockImplementationOnce(() =>
-			Promise.resolve({
-				data: person1,
-			})
-		);
+		mockedAxios.request.mockResolvedValueOnce({
+			data : person1
+		});
 
 		const person = await fetchPerson("1");
 
@@ -33,13 +31,11 @@ describe("Star Wars API", () => {
 	});
 
 	test("should get people", async () => {
-		axios.request.mockImplementationOnce(() =>
-			Promise.resolve({
-				data: {
-					results: people,
-				},
-			})
-		);
+		mockedAxios.request.mockResolvedValueOnce({
+			data : {
+				results: people
+			}
+		});
 
 		const personList = await fetchPeople();
 
